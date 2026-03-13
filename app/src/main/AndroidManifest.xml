@@ -47,6 +47,8 @@
         <activity android:name=".EmergencyContactsActivity" android:exported="false"/>
         <activity android:name=".AppAppearanceActivity" android:exported="false"/>
         <activity android:name=".AddHealthRecordActivity" android:exported="false"/>
+        <activity android:name=".EditHealthInfoActivity" android:exported="false"/>
+        <activity android:name=".CaregiverSettingsActivity" android:exported="false"/>
     </application>
 
 </manifest>

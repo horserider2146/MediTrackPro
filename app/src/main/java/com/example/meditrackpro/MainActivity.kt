@@ -2,17 +2,16 @@ package com.example.meditrackpro
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    // Shared ViewModel — accessible from all fragments
     val sharedMedicineViewModel: MedicineViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppThemeHelper.applyTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -21,5 +20,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNav.setupWithNavController(navController)
+
+        // Apply accent to bottom nav
+        AppThemeHelper.applyAccentToBottomNav(this, bottomNav)
     }
 }

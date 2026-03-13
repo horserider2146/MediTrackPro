@@ -1,4 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Dark theme (default) -->
     <style name="Theme.MediTrackPro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/accent</item>
         <item name="colorPrimaryVariant">@color/surface</item>
@@ -7,4 +10,15 @@
         <item name="android:statusBarColor">@color/bg_dark</item>
         <item name="android:navigationBarColor">@color/surface</item>
     </style>
+
+    <!-- Light theme override -->
+    <style name="Theme.MediTrackPro.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#00D4AA</item>
+        <item name="colorPrimaryVariant">#E0E0E0</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:windowBackground">#F0F4FF</item>
+        <item name="android:statusBarColor">#F0F4FF</item>
+        <item name="android:navigationBarColor">#E0E0E0</item>
+    </style>
+
 </resources>

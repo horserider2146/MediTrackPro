@@ -1,21 +1,22 @@
 package com.example.meditrackpro
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppThemeHelper.applyTheme(this)
         super.onCreate(savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
@@ -24,29 +25,29 @@ class LoginActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             val prefs = getSharedPreferences("privacy_prefs", MODE_PRIVATE)
             if (prefs.getBoolean("biometric", false)) {
-                // Show login screen but trigger biometric
                 setContentView(R.layout.activity_login)
+                applyAccentColor()
                 checkBiometric()
                 return
             }
-            // No biometric → go straight to main
             startActivity(Intent(this, MainActivity::class.java))
             finish()
             return
         }
 
         setContentView(R.layout.activity_login)
+        applyAccentColor()
 
-        val etEmail = findViewById<EditText>(R.id.etEmail)
+        val etEmail   = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
-        val btnSignIn = findViewById<Button>(R.id.btnSignIn)
+        val btnSignIn  = findViewById<Button>(R.id.btnSignIn)
 
         btnSignIn.setOnClickListener {
-            val email = etEmail.text.toString().trim()
+            val email    = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
             when {
-                email.isEmpty() -> Toast.makeText(this, "Enter your email", Toast.LENGTH_SHORT).show()
+                email.isEmpty()    -> Toast.makeText(this, "Enter your email", Toast.LENGTH_SHORT).show()
                 password.isEmpty() -> Toast.makeText(this, "Enter your password", Toast.LENGTH_SHORT).show()
                 else -> {
                     btnSignIn.isEnabled = false
@@ -61,8 +62,11 @@ class LoginActivity : AppCompatActivity() {
                             } else {
                                 btnSignIn.isEnabled = true
                                 btnSignIn.text = "Sign In"
-                                val errorMsg = task.exception?.message ?: "Sign in failed"
-                                Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    this,
+                                    task.exception?.message ?: "Sign in failed",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
                         }
                 }
@@ -92,11 +96,26 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun applyAccentColor() {
+        val accentColor = AppThemeHelper.getAccentColor(this)
+        val colorStateList = ColorStateList.valueOf(accentColor)
+
+        // Sign in button
+        findViewById<Button>(R.id.btnSignIn)
+            ?.backgroundTintList = colorStateList
+
+        // Accent text views
+        listOf(R.id.tvForgotPassword, R.id.tvGoToSignUp).forEach { id ->
+            findViewById<TextView>(id)?.setTextColor(accentColor)
+        }
+    }
+
     private fun checkBiometric() {
         val executor = ContextCompat.getMainExecutor(this)
 
         val biometricPrompt = BiometricPrompt(this, executor,
             object : BiometricPrompt.AuthenticationCallback() {
+
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult
                 ) {
@@ -111,7 +130,6 @@ class LoginActivity : AppCompatActivity() {
                     errString: CharSequence
                 ) {
                     super.onAuthenticationError(errorCode, errString)
-                    // User chose "Use Password" → just show login form normally
                     Toast.makeText(
                         this@LoginActivity,
                         "Use your password to sign in",

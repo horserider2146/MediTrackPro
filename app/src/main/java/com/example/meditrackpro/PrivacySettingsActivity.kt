@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 
-class PrivacySettingsActivity : AppCompatActivity() {
+class PrivacySettingsActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -37,6 +37,12 @@ class PrivacySettingsActivity : AppCompatActivity() {
         switchAnalytics.isChecked = prefs.getBoolean("analytics", true)
         switchBiometric.isChecked = prefs.getBoolean("biometric", false)
         switchBackup.isChecked = prefs.getBoolean("backup", true)
+        AppThemeHelper.applyAccentToSwitches(this,
+            findViewById(R.id.switchAnalytics),
+            findViewById(R.id.switchBiometric),
+            findViewById(R.id.switchBackup)
+        )
+        AppThemeHelper.applyAccent(this, findViewById(R.id.btnSavePrivacy))
 
         findViewById<TextView>(R.id.tvBack).setOnClickListener { finish() }
 

@@ -7,10 +7,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class NotificationSettingsActivity : AppCompatActivity() {
+class NotificationSettingsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification_settings)
+        AppThemeHelper.applyAccentToSwitches(this,
+            findViewById(R.id.switchDoseReminders),
+            findViewById(R.id.switchMissedDose),
+            findViewById(R.id.switchRefill),
+            findViewById(R.id.switchCaregiver),
+            findViewById(R.id.switchSound)
+        )
+        AppThemeHelper.applyAccent(this, findViewById(R.id.btnSaveNotifications))
 
         findViewById<TextView>(R.id.tvBack).setOnClickListener { finish() }
 

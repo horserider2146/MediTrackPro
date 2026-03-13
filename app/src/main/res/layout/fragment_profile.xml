@@ -28,7 +28,6 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- Avatar -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="72dp"
                     android:layout_height="72dp"
@@ -48,69 +47,60 @@
                     android:id="@+id/tvProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ritarshi Roy"
+                    android:text=""
                     android:textColor="@color/text_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvProfileDOBGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="12dp"
-                    android:text="DOB: April 21, 2006 · Male"
+                    android:text=""
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp" />
 
-                <!-- Condition badges -->
+                <!-- Condition badges container -->
                 <LinearLayout
+                    android:id="@+id/layoutConditionBadges"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/pill_blue_bg"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:text="Type 2 Diabetes"
-                        android:textColor="@color/blue_accent"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/pill_warning_bg"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:text="Hypertension"
-                        android:textColor="@color/warning"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
+                    android:orientation="horizontal"/>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
         <!-- ===== HEALTH INFO ===== -->
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginBottom="10dp"
-            android:letterSpacing="0.12"
-            android:text="HEALTH INFO"
-            android:textColor="@color/text_secondary"
-            android:textSize="11sp"
-            android:textStyle="bold" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="0.12"
+                android:text="HEALTH INFO"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvEditHealthInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit ›"
+                android:textColor="@color/accent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -132,8 +122,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="14dp">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Blood Type" android:textColor="@color/text_secondary" android:textSize="13sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="O+" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Blood Type"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/tvBloodTypeValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/surface" android:layout_marginStart="14dp" android:layout_marginEnd="14dp"/>
@@ -144,8 +147,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="14dp">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Height" android:textColor="@color/text_secondary" android:textSize="13sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="165 cm" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Height"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/tvHeightValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/surface" android:layout_marginStart="14dp" android:layout_marginEnd="14dp"/>
@@ -156,8 +172,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="14dp">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Weight" android:textColor="@color/text_secondary" android:textSize="13sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="62 kg" android:textColor="@color/text_primary" android:textSize="13sp" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Weight"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/tvWeightValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/surface" android:layout_marginStart="14dp" android:layout_marginEnd="14dp"/>
@@ -168,8 +197,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="14dp">
-                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="BMI" android:textColor="@color/text_secondary" android:textSize="13sp"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22.8" android:textColor="@color/accent" android:textSize="13sp" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="BMI"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/tvBMIValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/accent"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -217,23 +259,26 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvCaregiverName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ABC Roy"
+                        android:text="Not set"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCaregiverRelation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Spouse · Gets missed-dose alerts"
+                        android:text="Tap to add a caregiver"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvCaregiverStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/pill_accent_bg"
@@ -241,7 +286,7 @@
                     android:paddingEnd="10dp"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
-                    android:text="Active"
+                    android:text="›"
                     android:textColor="@color/accent"
                     android:textSize="11sp"
                     android:textStyle="bold" />
@@ -313,18 +358,17 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textColor="@color/text_secondary" android:textSize="18sp"/>
                 </LinearLayout>
 
-
             </LinearLayout>
 
-
         </androidx.cardview.widget.CardView>
+
         <Button
             android:id="@+id/btnSignOut"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/warning"
+            android:backgroundTint="@color/surface"
             android:text="Sign Out"
             android:textColor="@color/warning"
             android:textSize="14sp"
